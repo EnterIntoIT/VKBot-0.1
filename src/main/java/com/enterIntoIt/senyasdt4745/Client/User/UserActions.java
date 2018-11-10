@@ -4,4 +4,5 @@ import com.enterIntoIt.*;
 import com.vk.api.sdk.*;
 
 public class UserActions {
+
 }
