@@ -26,7 +26,7 @@ compileTestKotlin {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'com.pupptmstr.server.MainKt'
+        attributes 'Main-Class': 'package com.enterIntoIt.senyasdt4745.Main'
     }
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
