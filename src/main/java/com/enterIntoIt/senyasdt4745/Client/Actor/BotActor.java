@@ -1,5 +1,6 @@
 package com.enterIntoIt.senyasdt4745.Client.Actor;
 
+import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.Actor;
 import com.vk.api.sdk.client.actors.GroupActor;
 import com.vk.api.sdk.client.actors.UserActor;
@@ -7,6 +8,8 @@ import com.vk.api.sdk.client.actors.UserActor;
 import java.io.*;
 
 public class BotActor {
+
+    public static VkApiClient client;
 
     static BufferedReader inpFile;
 
