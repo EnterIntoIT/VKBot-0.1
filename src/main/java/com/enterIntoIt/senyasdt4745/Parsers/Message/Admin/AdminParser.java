@@ -10,7 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class AdminParser extends Message {
+public class AdminParser {
     static Long unixTime;
     public static DataClassAdminsMassage parseMessage(Message mes) throws ParseException, IOException {
         String parText = mes.getBody();

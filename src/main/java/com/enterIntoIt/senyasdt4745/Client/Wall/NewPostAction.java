@@ -19,7 +19,7 @@ public class NewPostAction extends Wall {
 
 
 
-    static void post(){
-        CheckPinPost.check();
+    //static void post(){
+      //  CheckPinPost.check();
     }
 }
