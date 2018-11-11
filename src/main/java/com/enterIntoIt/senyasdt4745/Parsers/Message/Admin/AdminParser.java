@@ -24,7 +24,7 @@ public class AdminParser {
         * */
         AdminParser.changeDate(parArray[1]);
 
-        return new DataClassAdminsMassage(parArray[0], unixTime, parArray[2], parAttachment);
+        return new DataClassAdminsMassage(mes.getUserId(),parArray[0], unixTime, parArray[2], parAttachment);
     }
 
 
