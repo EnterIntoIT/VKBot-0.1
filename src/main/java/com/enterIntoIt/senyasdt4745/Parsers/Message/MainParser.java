@@ -25,12 +25,16 @@ public class MainParser {
 
     public void redirectToAction() throws IOException, ParseException {
 
+        AdminParser.parseMessage(mes); //временно для проверки
+
+
         if(joinToGroup.getJoinType().getValue() == "join"){
             UserMassageHello.massage();
-        }
+        } else {
 
-        if(ifAdmin()){
+            if (ifAdmin()) {
                 AdminParser.parseMessage(mes);
+            }
         }
     }
 

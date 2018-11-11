@@ -1,23 +1,18 @@
 package com.enterIntoIt.senyasdt4745.Client.Wall;
 
-import com.enterIntoIt.senyasdt4745.Client.Admin.DataClassAdminsMassage;
-import com.enterIntoIt.senyasdt4745.Client.Posts.CheckPinPost;
-import com.enterIntoIt.senyasdt4745.Client.Posts.DataClassNewPost;
-import com.enterIntoIt.senyasdt4745.Parsers.Message.Admin.AdminParser;
 import com.vk.api.sdk.actions.Wall;
 import com.vk.api.sdk.client.VkApiClient;
+import com.vk.api.sdk.client.actors.UserActor;
 
-public class NewPostAction extends Wall {
-    /**
-     * Constructor
-     *
-     * @param client vk api client
-     */
-    public NewPostAction(VkApiClient client) {
-        super(client);
+public class NewPostAction l {
+
+    UserActor actor;
+    VkApiClient client;
+
+    public void sendPostToWall(){
+        Wall newPost= new Wall(client);
+        newPost.post(actor);
     }
-
-
 
     //static void post(){
       //  CheckPinPost.check();
