@@ -1,18 +1,19 @@
 package com.enterIntoIt.senyasdt4745.Client.Wall;
 
-import com.vk.api.sdk.actions.Wall;
+
+import com.enterIntoIt.senyasdt4745.*;
+import com.enterIntoIt.senyasdt4745.Client.Actor.BotActor;
 import com.vk.api.sdk.client.VkApiClient;
-import com.vk.api.sdk.client.actors.GroupActor;
 import com.vk.api.sdk.client.actors.UserActor;
 
 public class NewPostAction {
 
     int groupId =1;
-    UserActor actor = new UserActor(groupId, "qw");
+    //UserActor actor = new UserActor(groupId, "qw");
     VkApiClient client;
 
     public void sendPostToWall(){
-        client.wall().post(actor);
+        client.wall().post((UserActor) BotActor.actor);
     }
 
     //static void post(){
