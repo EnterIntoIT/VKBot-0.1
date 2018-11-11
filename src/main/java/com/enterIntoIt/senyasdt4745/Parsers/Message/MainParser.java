@@ -28,7 +28,7 @@ public class MainParser {
         AdminParser.parseMessage(mes); //временно для проверки
 
 
-        if(joinToGroup.getJoinType().getValue() == "join"){
+        if(joinToGroup.getJoinType().getValue().equals("join")){
             UserMassageHello.massage();
         } else {
 
