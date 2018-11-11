@@ -17,7 +17,11 @@ public class AdminParser extends Message {
         String parText = m.getBody();
         List<MessageAttachment> parAttachment = m.getAttachments();
         String [] parArray = parText.split("\n\r", 3);
-
+        /*
+        * Первая строка сообщения - тип закрепления(p/u)(parArray[0])
+        * Вторая строка - время в нужном формате(написан ниже)(автоматически переводится в unixTime)
+        * Остальное - текст поста(parArray[2])
+        * */
         AdminParser.changeDate(parArray[1]);
 
         return new DataClassAdminsMassage(parArray[0], unixTime, parArray[2], parAttachment);

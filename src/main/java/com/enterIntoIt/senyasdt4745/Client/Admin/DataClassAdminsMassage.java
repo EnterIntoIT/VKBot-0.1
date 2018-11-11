@@ -12,7 +12,7 @@ public class DataClassAdminsMassage {
     public String pin;
     public String text;
     public List<MessageAttachment> attachments;
-    public Integer from_group = 1; //пост от имени шруппы
+    public Integer from_group = 1; //пост от имени группы
     public Integer ownerID; //Id нашего сообщества
     public Long unixTime;
     public Integer signed = 0; // не подписывать отправителя поста
