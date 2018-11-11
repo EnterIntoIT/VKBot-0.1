@@ -16,6 +16,8 @@ public class NewPostAction extends Wall {
     }
 
     VkApiClient vk;
-    DataClassAdminsMassage newPost = new DataClassAdminsMassage();
-    CheckPinPost.check();
+    static DataClassAdminsMassage newPost = new DataClassAdminsMassage();
+    static void post(){
+        CheckPinPost.check(newPost);
+    }
 }

@@ -10,14 +10,13 @@ import java.util.List;
 
 public class DataClassAdminsMassage {
     public String pin;
-    //public String time;
     public String text;
     public List<MessageAttachment> attachments;
-    public Integer from_group = 1;
+    public Integer from_group = 1; //пост от имени шруппы
     public Integer ownerID; //Id нашего сообщества
     public Long unixTime;
-    public Integer signed = 0;
-    public Integer postId;
+    public Integer signed = 0; // не подписывать отправителя поста
+    public Integer postId; //Id поста
 
 
 
