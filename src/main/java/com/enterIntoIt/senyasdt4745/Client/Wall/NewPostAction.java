@@ -8,17 +8,17 @@ import com.vk.api.sdk.client.actors.UserActor;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.objects.wall.responses.PostResponse;
-i
+
 
 public class NewPostAction {
 
     int groupId =1;
     UserActor actor = new UserActor(groupId, "qw");
-
+    String attachmentId  = "";
     public void sendPostToWall(){
         try {
-            PostResponse getResponse = BotActor.client.wall().post(actor)
-                    .attachments("00")
+            PostResponse postResponse = BotActor.client.wall().post(actor)
+                    .attachments(attachmentId)
                     .execute();
         } catch (ApiException e) {
             e.printStackTrace();

@@ -14,8 +14,10 @@ public class DataClassAdminsMassage {
     public Long unixTime;
     public Integer signed = 0; // не подписывать отправителя поста
     public Integer postId; //Id поста
+    public Integer userId;
 
-    public DataClassAdminsMassage(String pin, Long unixTime, String text, List<MessageAttachment> attachments) throws ParseException {
+    public DataClassAdminsMassage(Integer userId, String pin, Long unixTime, String text, List<MessageAttachment> attachments) throws ParseException {
+        this.userId = userId;
         this.pin = pin;
         this.unixTime= unixTime;
         this.text = text;
