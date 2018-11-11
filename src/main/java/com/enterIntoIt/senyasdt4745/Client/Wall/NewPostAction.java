@@ -10,8 +10,9 @@ public class NewPostAction {
     VkApiClient client;
 
     public void sendPostToWall(){
-        Wall newPost= new Wall(client);
-        newPost.post(actor);
+
+        client.wall().post(actor);
+
     }
 
     //static void post(){
