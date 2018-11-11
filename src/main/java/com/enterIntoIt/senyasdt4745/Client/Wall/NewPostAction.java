@@ -4,7 +4,7 @@ import com.vk.api.sdk.actions.Wall;
 import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.UserActor;
 
-public class NewPostAction l {
+public class NewPostAction {
 
     UserActor actor;
     VkApiClient client;
