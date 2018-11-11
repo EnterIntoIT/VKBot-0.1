@@ -15,16 +15,10 @@ public class DataClassAdminsMassage {
     public Integer signed = 0; // не подписывать отправителя поста
     public Integer postId; //Id поста
 
-
-
-    //public void checkPin(String pin);
-
-
     public DataClassAdminsMassage(String pin, Long unixTime, String text, List<MessageAttachment> attachments) throws ParseException {
         this.pin = pin;
         this.unixTime= unixTime;
         this.text = text;
         this.attachments = attachments;
-
     }
 }
