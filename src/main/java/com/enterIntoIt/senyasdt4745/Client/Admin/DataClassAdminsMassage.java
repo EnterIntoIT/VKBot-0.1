@@ -2,10 +2,7 @@ package com.enterIntoIt.senyasdt4745.Client.Admin;
 
 import com.vk.api.sdk.objects.messages.MessageAttachment;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class DataClassAdminsMassage {
