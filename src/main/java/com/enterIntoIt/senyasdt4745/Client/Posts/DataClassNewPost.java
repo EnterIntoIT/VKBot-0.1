@@ -8,11 +8,12 @@ import java.util.List;
 
 public class DataClassNewPost extends DataClassAdminsMassage {
 
-    public DataClassNewPost(String pin,
+    public DataClassNewPost(Integer userId,
+                            String pin,
                             Long unixTime,
                             String text,
                             List<MessageAttachment> attachments
     ) throws ParseException {
-        super(pin, unixTime, text, attachments);
+        super(userId, pin, unixTime, text, attachments);
     }
 }
