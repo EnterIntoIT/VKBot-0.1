@@ -5,10 +5,13 @@ import com.vk.api.sdk.client.VkApiClient;
 import com.vk.api.sdk.client.actors.GroupActor;
 import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
+import com.vk.api.sdk.objects.messages.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Random;
+
+//обработка разных типов объектов
 
 public class BotRequestHandler {
 
@@ -44,7 +47,9 @@ public class BotRequestHandler {
     }
 
     void handleAdmin(JsonObject object){
-        String s = object.getAsJsonPrimitive("text").getAsString();
+        Message m = (Message) object; //здесть скорее всего не так, я разбираюсь
+        //хочу перестать работать с Json, но пока не знаю как
+        //Уточнить в спецификации (я пока не разобрался)
 
     }
 }

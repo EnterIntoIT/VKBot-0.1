@@ -20,24 +20,28 @@ public class Main {
 
         private final static String PROPERTIES_FILE = "Keys.properties";//файл с идентификаторами группы и тд
 
+        //запускаем бота
         public static void main(String[] args) throws Exception {
-            Properties properties = readProperties();
+            Properties properties = readProperties();  //создаю считыватель из файла Keys.properties
 
-            HttpTransportClient client = new HttpTransportClient();
-            VkApiClient apiClient = new VkApiClient(client);
+            HttpTransportClient client = new HttpTransportClient(); // открываю HTTPTransport client
+            VkApiClient apiClient = new VkApiClient(client);  //Создаю вк клиента
 
-            GroupActor actor = initVkApi(apiClient, readProperties());
-            BotRequestHandler botHandler = new BotRequestHandler(apiClient, actor);
+            GroupActor actor = initVkApi(apiClient, readProperties()); //Инициализирую группового клиента
+            BotRequestHandler botHandler = new BotRequestHandler(apiClient, actor); //Инициализирую и создаю бота
 
-            Server server = new Server(8080);
+            Server server = new Server(8080); //оТКРЫВАЮ ПОРТ
 
-            server.setHandler(new RequestHandler(botHandler, properties.getProperty("confirmationCode")));
+            server.setHandler(new RequestHandler(botHandler, properties.getProperty("confirmationCode"))); //Отправляю первый запрос
 
-            server.start();
+            server.start(); //ПОЕХАЛИ!!
             server.join();
         }
 
+
+        //Инициализация бота на сервере вк
         private static GroupActor initVkApi(VkApiClient apiClient, Properties properties) {
+
             int groupId = Integer.parseInt(properties.getProperty("groupId"));
             String token = properties.getProperty("token");
             int serverId = Integer.parseInt(properties.getProperty("serverId"));
@@ -55,6 +59,8 @@ public class Main {
             return actor;
         }
 
+
+        //Считывание всего и вся из файла
         private static Properties readProperties() throws FileNotFoundException {
             InputStream inputStream = Main.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE);
             if (inputStream == null)
