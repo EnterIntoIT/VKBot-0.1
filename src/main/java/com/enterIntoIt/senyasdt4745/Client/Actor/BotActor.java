@@ -11,6 +11,7 @@ public class BotActor {
     static BufferedReader inpFile;
 
     static {
+        int i = 1;
         try {
             inpFile = new BufferedReader(
                     new InputStreamReader(
@@ -22,4 +23,5 @@ public class BotActor {
         } catch (IOException e) {
         }
     }
+
 }
