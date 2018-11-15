@@ -1,5 +1,6 @@
 package com.enterIntoIt.senyasdt4745.Request;
 
+import com.enterIntoIt.senyasdt4745.Parsers.Admin.AdminTXTParser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -18,6 +19,7 @@ public class RequestHandler extends AbstractHandler {
     private final static String CONFIRMATION_TYPE = "confirmation";
     private final static String MESSAGE_TYPE = "message_new";
     private final static String OK_BODY = "ok";
+    private final static String JOIN_GROUP = "group_join";
 
     private final BotRequestHandler botRequestHandler;
     private final String confirmationCode;
@@ -33,9 +35,9 @@ public class RequestHandler extends AbstractHandler {
     @Override
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        if (!"POST".equalsIgnoreCase(request.getMethod())) {
+       /* if (!"POST".equalsIgnoreCase(request.getMethod())) {
             throw new ServletException("This method is unsupported");
-        }
+        }*/
 
         Reader reader = request.getReader();
 
@@ -48,13 +50,27 @@ public class RequestHandler extends AbstractHandler {
 
             final String responseBody;
             switch (type) {
+                case JOIN_GROUP:
+                    JsonObject objectJoin = requestJson.getAsJsonObject("object");
+                    int userIdJoin =  objectJoin.getAsJsonPrimitive("user_id").getAsInt();
+                    botRequestHandler.handleJoin(userIdJoin);
+                    responseBody = OK_BODY;
+                    break;
                 case CONFIRMATION_TYPE:
                     responseBody = confirmationCode;
                     break;
                 case MESSAGE_TYPE:
                     JsonObject object = requestJson.getAsJsonObject("object");
                     int userId = object.getAsJsonPrimitive("user_id").getAsInt();
-                    botRequestHandler.handle(userId);
+                    for (String idAdmin:
+                         AdminTXTParser.parsAdmTxt()) {
+                        if(userId == Integer.parseInt(idAdmin)){
+                            botRequestHandler.handleAdmin(object);
+                            break;
+                        }
+
+                    }
+                    botRequestHandler.handleMassage(userId);
                     responseBody = OK_BODY;
                     break;
                 default:

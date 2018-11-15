@@ -27,3 +27,7 @@ hs_err_pid*
 
 .idea/*
 
+Secret Files
+*.properties
+
+

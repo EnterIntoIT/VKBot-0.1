@@ -18,7 +18,7 @@ public class Main {
 
 
 
-        private final static String PROPERTIES_FILE = "Keys.txt";
+        private final static String PROPERTIES_FILE = "Keys.properties";//файл с идентификаторами группы и тд
 
         public static void main(String[] args) throws Exception {
             Properties properties = readProperties();

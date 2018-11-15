@@ -29,7 +29,7 @@ public class AdminParser {
 
 
 
-    static void changeDate(String time) throws ParseException {
+    private static void changeDate(String time) throws ParseException {
         String dateString = time;
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm Z"); //формат вводимой даты публикации
         //первые две цифры - день в месяце
