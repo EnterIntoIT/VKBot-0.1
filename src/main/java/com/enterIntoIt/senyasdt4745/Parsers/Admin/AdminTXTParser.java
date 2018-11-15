@@ -9,7 +9,7 @@ public class AdminTXTParser {
     {
         try {
             in = new BufferedReader(new InputStreamReader(new FileInputStream(
-                        new File("/home/arseny/WorkingFolder/VK 0.1/VKBot-0.1/src/main/java/com/enterIntoIt/AdminID.txt"))));
+                        new File("AdminID.txt"))));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
