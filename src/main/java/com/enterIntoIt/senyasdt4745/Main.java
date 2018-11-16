@@ -1,6 +1,7 @@
 package com.enterIntoIt.senyasdt4745;
 
 import com.enterIntoIt.senyasdt4745.New.Jobs.Job;
+import com.enterIntoIt.senyasdt4745.New.Jobs.MembersUpdateJob;
 import com.enterIntoIt.senyasdt4745.Request.BotRequestHandler;
 import com.enterIntoIt.senyasdt4745.Request.RequestHandler;
 import com.vk.api.sdk.client.VkApiClient;
@@ -9,6 +10,8 @@ import com.vk.api.sdk.exceptions.ApiException;
 import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.httpclient.HttpTransportClient;
 import org.eclipse.jetty.server.Server;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,9 +19,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     private static VkApiClient vk;
+
+    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
     private static List<Job> jobs = new ArrayList<>();
 
@@ -28,15 +34,36 @@ public class Main {
 
     private final static String PROPERTIES_FILE = "Keys.properties";//файл с идентификаторами группы и тд
 
+    private static String mode = "standalone";
+
     //запускаем бота
 
     public static void main(String[] args) throws Exception {
+        init();
+
+        run();
+    }
+
+    private static void init (){
+        initJobs();
+        if(isServerMode()){
+
+        }
+    }
+
+    public static void initCient() throws FileNotFoundException {
         Properties properties = readProperties();  //создаю считыватель из файла Keys.properties
 
         HttpTransportClient client = new HttpTransportClient(); // открываю HTTPTransport client
         vk = new VkApiClient(client);  //Создаю вк клиента
 
         actor = initVkApi(vk, readProperties()); //Инициализирую группового клиента
+
+    }
+
+    public static void initServer()  throws Exception  {
+        Properties properties = readProperties();  //создаю считыватель из файла Keys.properties
+
         BotRequestHandler botHandler = new BotRequestHandler(vk, actor); //Инициализирую и создаю бота
 
         Server server = new Server(8080); //Отркываю порт
@@ -45,8 +72,20 @@ public class Main {
 
         server.start(); //ПОЕХАЛИ!!
         server.join();
+
+
     }
 
+    private static void initJobs() {
+        jobs.add(new MembersUpdateJob());
+        jobs.add(new NewsJob());
+        jobs.add(new NotifyIssueChangesJob());
+        jobs.add(new SprintEndJob());
+
+        if (!isServerMode()) {
+            jobs.add(new MessagesJob());
+        }
+    }
 
         //Инициализация бота на сервере вк
 
@@ -91,7 +130,30 @@ public class Main {
         return actor;
     }
 
+    public static boolean isServerMode() {
+        return mode.equalsIgnoreCase("server");
+    }
+
     public static VkApiClient vk() {
         return vk;
+    }
+
+    public static void run () throws InterruptedException {
+        if (jobs.isEmpty()) {
+            LOG.warn("No jobs configured. Exist");
+            return;
+        }
+
+        while (true) {
+            for (Job job : jobs) {
+                try {
+                    job.doJob();
+                } catch (Exception e) {
+                    LOG.error("Something wrong", e);
+                }
+            }
+
+            TimeUnit.SECONDS.sleep(1);
+        }
     }
 }
